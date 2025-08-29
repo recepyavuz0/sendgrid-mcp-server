@@ -1,0 +1,28 @@
+import sgMail from "@sendgrid/mail";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
+
+export async function sendEmail(to: string, subject: string, text: string, html?: string) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
+  const fromEmail = process.env.FROM_EMAIL || '';
+
+  const msg = {
+    to: to, // Change to your recipient
+    from: fromEmail, // Change to your verified sender
+    subject: subject,
+    text: text,
+    html: html || '<strong>MCPden denemeler sonucu gönderilen mail</strong>',
+  }
+  
+  console.log(msg);
+
+  try {
+    await sgMail.send(msg);
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw error; // Re-throw error so it can be handled by the calling function
+  }
+}

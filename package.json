@@ -6,10 +6,13 @@
   "bin": {
     "sendgrid-mcp-server": "./build/index.js"
   },
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && chmod 755 build/index.js"
+    "build": "tsc && node build/index.js",
+    "start": "node build/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,10 +28,14 @@
   "homepage": "https://github.com/recepyavuz0/sendgrid-mcp-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.3",
-    "zod": "^3.25.76"
+    "@sendgrid/mail": "^8.1.1",
+    "dotenv": "^16.6.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0",
-    "typescript": "^5.9.2"
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
   }
 }
