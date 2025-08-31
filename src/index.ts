@@ -4,6 +4,7 @@ import { z } from "zod";
 import { sendEmail } from "./tools/sendEmail.js";
 import { sendEmailWithTemplate } from "./tools/sendEmailWithTemplate.js";
 import { sendBatchEmails } from "./tools/sendBatchEmails.js";
+import { listTemplates } from "./tools/listTemplates.js";
 
 // Create server instance
 const server = new McpServer({
@@ -87,6 +88,25 @@ server.registerTool(
       content: [{ 
         type: "text", 
         text: `Batch email sent to ${toList.length} recipients` 
+      }]
+    };
+  }
+);
+
+// e.g "bana email template listesini gösterir misin?"
+// e.g "denemehesap@gmail.com mail adresine event şablonunu kullanarak bir mail atar mısın? (önce templateList ile liste çekilir ardından template kullanılarak mail atılır)"
+server.registerTool(
+  'listTemplates',
+  {
+    title: 'List Email Templates',
+    description: 'Fetches the list of available email templates'
+  },
+  async () => {
+    const templates = await listTemplates();
+    return {
+      content: [{
+        type: 'text',
+        text: `Templates:\n${templates.map((t: any) => `- ${t.name} (${t.id})`).join('\n')}`
       }]
     };
   }
