@@ -28,6 +28,7 @@
   "homepage": "https://github.com/recepyavuz0/sendgrid-mcp-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.3",
+    "@sendgrid/client": "^8.1.5",
     "@sendgrid/mail": "^8.1.1",
     "dotenv": "^16.6.1",
     "zod": "^3.22.4"
