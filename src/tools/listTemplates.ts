@@ -19,6 +19,6 @@ export async function listTemplates() {
       return body.templates;
     } catch (error) {
       console.error("Error sending email list templates:", error);
-      throw error; // Re-throw error so it can be handled by the calling function
+      throw error;
     }
 }

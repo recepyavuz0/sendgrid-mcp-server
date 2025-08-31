@@ -20,6 +20,6 @@ export async function sendEmail(to: string, subject: string, text: string, html?
     await sgMail.send(msg);
   } catch (error) {
     console.error('Error sending email:', error);
-    throw error; // Re-throw error so it can be handled by the calling function
+    throw error;
   }
 }

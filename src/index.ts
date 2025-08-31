@@ -6,6 +6,7 @@ import { sendEmailWithTemplate } from "./tools/sendEmailWithTemplate.js";
 import { sendBatchEmails } from "./tools/sendBatchEmails.js";
 import { listTemplates } from "./tools/listTemplates.js";
 import { getStats } from "./tools/getStats.js";
+import { scheduleEmail } from "./tools/scheduleEmail.js";
 
 // Create server instance
 const server = new McpServer({
@@ -131,6 +132,31 @@ server.registerTool(
       content: [{ 
         type: "text", 
         text: JSON.stringify(stats, null, 2) 
+      }]
+    };
+  }
+);
+
+// e.g "1 eylül 2025 tarihine saat 01:10 saatine "Toplantı detayları ..." isimli bir mail planlar mısın?(planlanan  mail Activity sayfasında görünür)"
+server.registerTool(
+  'scheduleEmail',
+  {
+    title: 'Schedule Email',
+    description: 'Schedule an email to be sent at a specific time',
+    inputSchema: {
+      to: z.string(),
+      subject: z.string(),
+      text: z.string(),
+      html: z.string().optional(),
+      send_at: z.number().describe('UNIX timestamp (seconds) for when to send')
+    }
+  },
+  async ({ to, subject, text, html, send_at }) => {
+    await scheduleEmail(to, subject, text, send_at, html );
+    return {
+      content: [{ 
+        type: "text", 
+        text: `Email scheduled for ${to} at ${new Date(send_at * 1000).toISOString()}` 
       }]
     };
   }

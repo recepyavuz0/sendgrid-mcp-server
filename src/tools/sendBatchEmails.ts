@@ -9,8 +9,8 @@ export async function sendBatchEmails(toList: string[], subject: string, text: s
   const fromEmail = process.env.FROM_EMAIL || '';
 
   const msg = {
-    to: toList, // Change to your recipient
-    from: fromEmail, // Change to your verified sender
+    to: toList,
+    from: fromEmail,
     subject: subject,
     text: text,
     html: html || '<strong>MCPden denemeler sonucu gönderilen mail</strong>',
@@ -20,6 +20,6 @@ export async function sendBatchEmails(toList: string[], subject: string, text: s
     await sgMail.sendMultiple(msg);
   } catch (error) {
     console.error('Error sending email batch:', error);
-    throw error; // Re-throw error so it can be handled by the calling function
+    throw error;
   }
 }
