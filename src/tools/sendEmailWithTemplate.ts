@@ -9,18 +9,15 @@ export async function sendEmailWithTemplate(to: string, subject: string, templat
   const fromEmail = process.env.FROM_EMAIL || '';
 
   const msg = {
-    to: to, // Change to your recipient
-    from: fromEmail, // Change to your verified sender
+    to: to,
+    from: fromEmail,
     subject: subject,
     templateId: templateId,
     dynamicTemplateData: dynamicTemplateData,
   }
   
-  console.log(msg);
-
   try {
     await sgMail.send(msg);
-    console.log('Email sent with template successfully');
   } catch (error) {
     console.error('Error sending email with template:', error);
     throw error; // Re-throw error so it can be handled by the calling function

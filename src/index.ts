@@ -3,6 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { sendEmail } from "./tools/sendEmail.js";
 import { sendEmailWithTemplate } from "./tools/sendEmailWithTemplate.js";
+import { sendBatchEmails } from "./tools/sendBatchEmails.js";
 
 // Create server instance
 const server = new McpServer({
@@ -61,6 +62,31 @@ server.registerTool(
       content: [{ 
         type: "text", 
         text: `Template email sent to ${to}` 
+      }]
+    };
+  }
+);
+
+// e.g "["example.ex@gmail.com","example2.ex@gmail.com"] adresine toplantı hatırlatması gönder: 'Yarın 14:00’te görüşürüz.'"
+// e.g "example1234@gmail.com, example.ex@gmail.com, denemehesap@gmail.com mail adreslerine güzel bir heml formatında "bizi tercih ettiğiniz için teşekkür ederiz" mesajı içeren mail gönder"
+server.registerTool(
+  'sendBatchEmails',
+  {
+    title: 'Send Batch Emails',
+    description: 'Send the same email to multiple recipients at once',
+    inputSchema: {
+      toList: z.array(z.string()).describe('List of recipient emails (e.g., ["example.ex@gmail.com","example2.ex@gmail.com"])'),
+      subject: z.string().describe('The subject of the email'),
+      text: z.string().describe('The body of the email'),
+      html: z.string().optional().describe('The HTML body of the email (optional)')
+    }
+  },
+  async ({ toList, subject, text, html }) => {
+    await sendBatchEmails(toList, subject, text, html);
+    return {
+      content: [{ 
+        type: "text", 
+        text: `Batch email sent to ${toList.length} recipients` 
       }]
     };
   }
