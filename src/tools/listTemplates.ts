@@ -16,7 +16,6 @@ export async function listTemplates() {
 
     try {
       const [response, body] = await sgClient.request(request as any);
-      console.log("Email list templates successfully");
       return body.templates;
     } catch (error) {
       console.error("Error sending email list templates:", error);

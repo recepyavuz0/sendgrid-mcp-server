@@ -5,6 +5,7 @@ import { sendEmail } from "./tools/sendEmail.js";
 import { sendEmailWithTemplate } from "./tools/sendEmailWithTemplate.js";
 import { sendBatchEmails } from "./tools/sendBatchEmails.js";
 import { listTemplates } from "./tools/listTemplates.js";
+import { getStats } from "./tools/getStats.js";
 
 // Create server instance
 const server = new McpServer({
@@ -107,6 +108,29 @@ server.registerTool(
       content: [{
         type: 'text',
         text: `Templates:\n${templates.map((t: any) => `- ${t.name} (${t.id})`).join('\n')}`
+      }]
+    };
+  }
+);
+
+// e.g "2025 ağustos ayına ait mail raporlarını gösterir misin?"
+server.registerTool(
+  'getStats',
+  {
+    title: 'Get Email Stats',
+    description: 'Get email stats and reports over a date range',
+    inputSchema: {
+      start_date: z.string().describe('Start date in YYYY-MM-DD format'),
+      end_date: z.string().describe('End date in YYYY-MM-DD format'),
+      aggregated_by: z.enum(['day', 'week', 'month']).optional().describe('Aggregated by day, week, or month')
+    }
+  },
+  async ({ start_date, end_date, aggregated_by }) => {
+    const stats = await getStats(start_date, end_date, aggregated_by);
+    return {
+      content: [{ 
+        type: "text", 
+        text: JSON.stringify(stats, null, 2) 
       }]
     };
   }
