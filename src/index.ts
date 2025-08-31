@@ -7,6 +7,7 @@ import { sendBatchEmails } from "./tools/sendBatchEmails.js";
 import { listTemplates } from "./tools/listTemplates.js";
 import { getStats } from "./tools/getStats.js";
 import { scheduleEmail } from "./tools/scheduleEmail.js";
+import { createTemplate } from "./tools/createTemplate.js";
 
 // Create server instance
 const server = new McpServer({
@@ -157,6 +158,30 @@ server.registerTool(
       content: [{ 
         type: "text", 
         text: `Email scheduled for ${to} at ${new Date(send_at * 1000).toISOString()}` 
+      }]
+    };
+  }
+);
+
+// e.g "price-plan-template isminde bir içeriğinde plan, price, features parametreleri olan html formatında güzel bir tasarımlı template oluşturur musun?" (oluşturulan template sendrid panelinde dynamic template sayfasında görünür)
+server.registerTool(
+  'createTemplate',
+  {
+    title: 'Create Email Template with Custom Fields',
+    description: 'Create a new dynamic email template with fields like email and expire_date',
+    inputSchema: {
+      name: z.string().describe('The name of the template'),
+      subject: z.string().describe('The subject of the template'),
+      html_body: z.string().describe('HTML content with {{email}}, {{expire_date}}, etc.'),
+      plain_body: z.string().describe('Plain content with {{email}}, {{expire_date}}, etc.')
+    }
+  },
+  async ({ name, subject, html_body, plain_body }) => {
+    const { templateId } = await createTemplate( name, subject, html_body, plain_body );
+    return {
+      content: [{ 
+        type: "text", 
+        text: `Template created with ID: ${templateId}` 
       }]
     };
   }
