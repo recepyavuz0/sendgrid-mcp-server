@@ -1,6 +1,6 @@
 {
   "name": "sendgrid-api-mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sendrid API Integration For LLM",
   "main": "build/index.js",
   "bin": {
