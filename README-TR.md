@@ -2,7 +2,7 @@
 
 🚀 **SendGrid API entegrasyonlu Model Context Protocol (MCP) sunucusu**
 
-Bu proje, AI asistanları (Claude, ChatGPT, vb.) için SendGrid API'sini kullanarak e-posta gönderme, template yönetimi ve istatistik takibi yapabilmeyi sağlayan bir MCP sunucusudur.
+Bu proje, AI asistanları (Claude, ChatGPT, vb.) için SendGrid API v3 kullanarak e-posta gönderme, template yönetimi ve istatistik takibi yapabilmeyi sağlayan bir MCP sunucusudur.
 
 ## 🌟 Özellikler
 

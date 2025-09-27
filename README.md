@@ -2,7 +2,7 @@
 
 🚀 **Model Context Protocol (MCP) server with SendGrid API integration**
 
-This project is an MCP server that enables AI assistants (Claude, ChatGPT, etc.) to send emails, manage templates, and track statistics using the SendGrid API.
+This project is an MCP server that enables AI assistants (Claude, ChatGPT, etc.) to send emails, manage templates, and track statistics using the SendGrid's API v3.
 
 ## 🌟 Features
 
