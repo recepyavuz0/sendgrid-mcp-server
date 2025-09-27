@@ -1,13 +1,16 @@
 {
-  "name": "sendgrid-mcp-server",
+  "name": "sendgrid-api-mcp-server",
   "version": "1.0.0",
   "description": "Sendrid API Integration For LLM",
-  "main": "index.js",
+  "main": "build/index.js",
   "bin": {
     "sendgrid-mcp-server": "./build/index.js"
   },
   "files": [
-    "build"
+    "build",
+    "README.md",
+    "README-TR.md", 
+    "LICENSE"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,9 +21,22 @@
     "type": "git",
     "url": "git+https://github.com/recepyavuz0/sendgrid-mcp-server.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "sendgrid",
+    "sendgrid-api",
+    "sendgrid-api-mcp-server",
+    "sendgrid-client",
+    "sendgrid-mail",
+    "sendgrid-mcp-server",
+    "sendgrid-mcp",
+    "sendgrid-mcp-tools",
+    "mail-mcp",
+    "mail-mcp-server",
+    "mcp",
+    "email"
+  ],
+  "author": "Recep Yavuz",
+  "license": "MIT",
   "type": "module",
   "bugs": {
     "url": "https://github.com/recepyavuz0/sendgrid-mcp-server/issues"

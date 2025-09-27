@@ -1,0 +1,55 @@
+# SendGrid MCP Server
+
+## Description
+SendGrid MCP Server is a Model Context Protocol server that enables AI assistants to send emails, manage templates, and track email statistics using the SendGrid API.
+
+## Installation
+```bash
+npm install -g sendgrid-api-mcp-server
+```
+
+## Quick Setup
+1. Install globally: `npm install -g sendgrid-api-mcp-server`
+2. Configure environment variables: SENDGRID_API_KEY, FROM_EMAIL
+3. Add to Claude/MCP client configuration
+
+## Key Features
+- Send single and batch emails
+- Template-based email sending
+- Email scheduling
+- Template management
+- Email statistics and reporting
+
+## Main Use Cases
+- Email notifications for AI applications
+- Automated email campaigns
+- Template-based customer communications
+- Email analytics and reporting
+
+## Configuration Example
+```json
+{
+  "mcpServers": {
+    "sendgrid-api-mcp-server": {
+      "command": "node",
+      "args": ["sendgrid-api-mcp-server"],
+      "env": {
+        "SENDGRID_API_KEY": "your_api_key",
+        "FROM_EMAIL": "your_email@domain.com"
+      }
+    }
+  }
+}
+```
+
+## Available Tools
+- sendEmail: Basic email sending
+- sendBatchEmails: Send to multiple recipients
+- sendEmailWithTemplate: Template-based emails
+- scheduleEmail: Schedule future emails
+- listTemplates: View available templates
+- createTemplate: Create new templates
+- getStats: Email statistics
+
+## Keywords
+sendgrid, mcp, model context protocol, email api, ai email, claude email, chatgpt email, email automation, sendgrid integration, ai assistant email
