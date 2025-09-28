@@ -13,7 +13,7 @@ export async function sendEmail(to: string, subject: string, text: string, html?
     from: fromEmail, 
     subject: subject,
     text: text,
-    html: html || '<strong>MCPden denemeler sonucu gönderilen mail</strong>',
+    html: html,
   }
   
   try {

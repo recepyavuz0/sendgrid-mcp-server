@@ -70,12 +70,14 @@ Cursor'da MCP sunucusunu kullanmak için:
 2. Yeni bir MCP server ekleyin:
 ```json
 {
-  "sendgrid-api-mcp-server": {
-    "command": "node",
-    "args": ["sendgrid-api-mcp-server"],
-    "env": {
-      "SENDGRID_API_KEY": "your_api_key",
-      "FROM_EMAIL": "your_email@domain.com"
+  "mcpServers": {
+    "sendgrid-api-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "sendgrid-api-mcp-server"],
+      "env": {
+        "SENDGRID_API_KEY": "your_api_key",
+        "FROM_EMAIL": "your_email@domain.com"
+      }
     }
   }
 }
@@ -99,8 +101,8 @@ Claude Desktop uygulamasında kullanım için:
 {
   "mcpServers": {
     "sendgrid-api-mcp-server": {
-      "command": "node",
-      "args": ["sendgrid-api-mcp-server"],
+      "command": "npx",
+      "args": ["-y", "sendgrid-api-mcp-server"],
       "env": {
         "SENDGRID_API_KEY": "your_api_key",
         "FROM_EMAIL": "your_email@domain.com"

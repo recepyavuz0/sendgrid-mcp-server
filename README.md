@@ -70,12 +70,14 @@ To use the MCP server in Cursor:
 2. Add a new MCP server:
 ```json
 {
-  "sendgrid-api-mcp-server": {
-    "command": "node",
-    "args": ["sendgrid-api-mcp-server"],
-    "env": {
-      "SENDGRID_API_KEY": "your_api_key",
-      "FROM_EMAIL": "your_email@domain.com"
+  "mcpServers": {
+    "sendgrid-api-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "sendgrid-api-mcp-server"],
+      "env": {
+        "SENDGRID_API_KEY": "your_api_key",
+        "FROM_EMAIL": "your_email@domain.com"
+      }
     }
   }
 }
@@ -99,8 +101,8 @@ For usage in Claude Desktop application:
 {
   "mcpServers": {
     "sendgrid-api-mcp-server": {
-      "command": "node",
-      "args": ["sendgrid-api-mcp-server"],
+      "command": "npx",
+      "args": ["-y", "sendgrid-api-mcp-server"],
       "env": {
         "SENDGRID_API_KEY": "your_api_key",
         "FROM_EMAIL": "your_email@domain.com"
